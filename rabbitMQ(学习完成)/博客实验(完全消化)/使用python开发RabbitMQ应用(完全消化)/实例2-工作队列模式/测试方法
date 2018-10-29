@@ -1,0 +1,11 @@
+开三个终端，然后两个跑worker.py,一个跑manage.py
+
+测试方法如下
+python worker.py
+python worker.py
+python manager.py task1.
+python manager.py task2..
+python manager.py task3...
+python manager.py task4....
+
+这里taskx后面的小数点是用来模拟一个任务需要多久的。

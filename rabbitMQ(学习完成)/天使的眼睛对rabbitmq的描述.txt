@@ -1,0 +1,94 @@
+celery 需要有 broker 才能跑的
+celery 推荐你使用 rabbitmq 做 broker
+rabbitmq 就是个 queue
+至于是否结合 celery，看你做什么
+celery算是个 job distributor
+celery自身不提供 message queue的，你必须用一个 backend（broker）
+例如 rabbitmq，zeroMQ之类的
+两个是不同的东西。大多数用 rabbitmq 的，不会用 celery 的
+大多数用 celery 的，会使用 rabbitmq
+就好像，大多数写网页的，会使用 mysql，但是不是说只要是一个数据库，就一定是拿来做网页的
+严格的区分的话，celery 是 task queue，rabbit 是 message queue、
+rabbitMQ是用来传递信息的（message）
+celery 是用来传递工作的（多个机器执行一定的任务）
+一个是只有信息，另外一个是执行任务，那么任务是怎么发布的呢？任务是通过传递信息来发布的。所以说 rabbitMQ 是 celery 的一个“后台”。你告诉芹菜说，给我一个计算1+1的任务
+
+芹菜通过 rabbitMQ 发布任务出去
+下面有100台机器，从 rabbitMQ 读取任务出来，然后会运行这个任务
+结果再返回 rabbitMQ，然后你可以从一个地方，拿到所有的返回结果
+
+芹菜推荐使用 rabbitmq，没说一定要用这个。你也可以用 Redis，可以用 SQS，可以用 Zookeeper 等等
+
+celery 发布的直接是你要运行的东西，包括你的代码
+
+天使de眼睛 11:29:51 PM
+例如你写个
+def cal():
+    一顿的复杂运算
+
+
+那么 celery 可以直接把这个“函数”发布出去。client 那边就直接运行，然后自动把结果给你传递回去
+不是同等的东西
+
+太古时代的小鲤鱼 11:31:13 PM
+感觉和回调蛮像的
+ 
+天使de眼睛 11:31:35 PM
+不是回调。如果你自己写的话，是 multiprocessing 的模块
+celery 做的就是 multiprocessing.Manager的工作
+然后东西的传递是 pickle
+
+太古时代的小鲤鱼 11:32:05 PM
+理解理解
+太古时代的小鲤鱼 11:32:13 PM
+序列化
+
+天使de眼睛 11:32:14 PM
+rabbitMQ 只是传递的一个“中转站”
+太古时代的小鲤鱼 11:32:38 PM
+那么。。。如果是zookeeper，也可以理解成是中转站对吧
+天使de眼睛 11:32:42 PM
+cellery 提供给你的是多进程
+不过比 python 内置的多进程做的好很多
+python 自身的多进程也是可以刮机器的
+
+
+天使de眼睛 11:34:04 PM
+https://docs.python.org/3.6/library/multiprocessing.html#multiprocessing-managers
+多进程是说多个进程一起跑，没说要在一个电脑上
+celery 本来就是多个电脑跑的
+python 的多进程模块也是一样
+python 官网例子里面就有多进程在不同机器跑的例子
+celery 做的比较简单，功能也多很多。python 自带的就比较简陋了
+
+
+芹菜（celery）通过 rabbitMQ 发布任务出去
+下面有100台机器，从 rabbitMQ 读取任务出来，然后会运行这个任务
+结果再返回 rabbitMQ，然后你可以从一个地方，拿到所有的返回结果
+
+芹菜推荐使用 rabbitmq，没说一定要用这个。你也可以用 Redis，可以用 SQS，可以用 Zookeeper 等等
+
+那么 celery 可以直接把这个“函数”发布出去。client 那边就直接运行，然后自动把结果给你传递回去
+不是同等的东西
+
+☆☆☆☆
+Redis 是 key，value 的数据库
+SQS 是 aws 的一个简单的 queue 服务
+zookeeper 是给 hadoop 提供设定的服务
+celery 做的就是 multiprocessing.Manager的工作
+
+然后东西的传递是 pickle
+
+
+多进程不一定是进程池
+
+你可以初始化进程池，这个跟多进程没关系
+
+for i in range(x):
+    new_process(i)
+这个就是没有 进程池，那么你不知道 x 有多少大，也许只有10个，也许有1百万个东西
+
+
+每start一个线程就join一个线程(自己理解，因为此时都是一个线程结束了才去运行下一个进程，所以整个系统中只有一个线程在运行)
+那就等于单线程喽
+join 就是等待线程结束。所以就没有多线程的意思了

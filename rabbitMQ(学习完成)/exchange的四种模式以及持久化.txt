@@ -1,0 +1,17 @@
+https://www.rabbitmq.com/tutorials/amqp-concepts.html
+
+
+Exchanges are AMQP entities where messages are sent. Exchanges take a message and route it into zero or more queues. The routing algorithm used depends on the exchange type and rules called bindings. AMQP 0-9-1 brokers provide four exchange types:
+
+Name    Default pre-declared names
+
+Direct exchange (Empty string) and amq.direct
+Fanout exchange amq.fanout
+Topic exchange  amq.topic
+Headers exchange    amq.match (and amq.headers in RabbitMQ)
+
+
+可以看到空值默认就是direct
+
+
+所谓的持久化,就是发送端把数据传给queue以前,先把数据在本地保存下来,这样即使宕机了,数据已经在硬盘里面了就不用担心了.

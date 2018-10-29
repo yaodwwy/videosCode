@@ -1,0 +1,9 @@
+先开三个接收端
+python receive_logs_direct.py 111
+python receive_logs_direct.py 222
+python receive_logs_direct.py 333
+然后发送三次信息
+python emit_log_direct.py 333 您好
+python emit_log_direct.py 111 您好
+python emit_log_direct.py 222 您好
+可以观察到,binding_key和routing完全一致的情况下,接收端才会接收到信息

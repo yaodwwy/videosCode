@@ -1,0 +1,10 @@
+运行方法:
+开第一个终端,运行:
+python receive.py "#"
+开第二个终端,运行:
+python receive.py "happy.*"
+开第三个终端,运行:
+python receive.py "*.work"
+
+开第四个终端,运行:
+python send.py

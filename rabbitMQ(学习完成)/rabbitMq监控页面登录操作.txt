@@ -1,0 +1,29 @@
+首先
+apt-get install erlang
+apt-get install rabbitmq-server
+
+
+首先根据链接:https://blog.csdn.net/u011642663/article/details/54691788
+启动管理模块,具体命令如下:
+rabbitmqctl start_app
+rabbitmq-plugins enable rabbitmq_management
+rabbitmqctl stop
+
+
+然后根据链接:
+https://blog.csdn.net/coco2d_x2014/article/details/75210735
+新建用户,具体命令如下:
+rabbitmqctl add_user appleyuchi 123456
+
+赋予权限
+rabbitmqctl set_permissions appleyuchi ".*" ".*" ".*"
+
+打开连接(端口号不用修改)
+http://localhost:15672/
+输入用户名密码即可
+
+
+
+
+用户名appleyuchi
+密码:123456

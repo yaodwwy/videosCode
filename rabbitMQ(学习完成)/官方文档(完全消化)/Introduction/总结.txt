@@ -1,0 +1,2 @@
+这个例子中,发送方代码以及接收方代码中都没有exchange,
+而是两边各自声明相同的queue,然后channel绑定queue,通过queue来直接通信

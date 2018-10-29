@@ -1,0 +1,26 @@
+注意这个实验的运行方式是(以下运行顺序不能换,否则接收端会收不到):
+
+接收端:
+python receive_logs_topic.py zheshiyaoshi
+发送端:
+python emit_log_topic.py zheshiyaoshi 你好
+
+
+zheshiyaoshi是"这是钥匙"的拼音
+发送端的"zheshiyaoshi"代表routing key
+接收端的"zheshiyaoshi"代表binding key
+只有两种key完全一致的时候,接收端才能接收到信息
+
+如果接收端的key不是zheshiyaoshi,那么即使遵守以上运行顺序,也会收不到信息.
+
+
+
+注1：emit_log.py为消息的发送端，receive_logs.py为消息的接收端。
+可以同时运行多个receive_logs.py，当emit_log.py发送消息时，可以发现所有正在运行的receive_logs.py都会收到来自发送端的消息。
+
+注2：类似与广播，如果消息发送时，接收端没有运行，那么它将不会收到此条消息，即消息的广播是即时的。
+所以需要先有接收端,再有发送端
+
+
+
+另外官方参考链接中包含对*和#的匹配

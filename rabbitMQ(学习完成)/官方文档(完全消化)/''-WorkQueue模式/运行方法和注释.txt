@@ -1,0 +1,7 @@
+开三个终端
+两个运行worker.py
+一个运行new_task.py(要运行两次)
+然后两个worker.py就会轮流收到helloworld的信息
+
+
+这个实验室之所以说是WorkQueue,很大程度上是因为,这些workers,也即是客户端,是轮流接收到发送端传过来的信息的,就好像这些客户端是排着队在接收信息一样,所以被称为workQueue

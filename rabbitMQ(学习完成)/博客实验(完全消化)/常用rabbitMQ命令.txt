@@ -1,0 +1,12 @@
+关闭服务
+rabbitmqctl stop
+开启服务
+/etc/init.d/rabbitmq-server restart
+--------------------------------------------------------
+查看绑定关系列表
+rabbitmqctl list_bindings
+------------------------------------------------------
+清除所有队列
+1,rabbitmqctl stop_app
+2,rabbitmqctl reset
+3,rabbitmqctl start_app

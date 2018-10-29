@@ -1,0 +1,7 @@
+python compute.py
+python center.py
+
+
+
+这里的运行效果就是,center发数据给compute,compute计算结束后返回给center
+这里的发送数据以及返回数据都是采用pushlish在发送的,所以收发两边都有consume和publish函数,其实类似于rpc

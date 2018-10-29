@@ -1,0 +1,3 @@
+注意,在这个案例中,即使发送方的routing_key和接收方的routing_key不一致,
+最终接收方也可以收到信息.
+因为此时的传播模式是fanout,而不是topic

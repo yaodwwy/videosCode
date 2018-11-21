@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>lesson1</title>
+    <style>
+        .div1{  width: 100px; height: 100px;
+            background-color: orange; position: absolute;   }
+        .div2{  width: 100px; height: 100px;
+            background-color: skyblue; position: absolute; top: 150px;  }
+    </style>
+</head>
+<body>
+
+<div class="div1"></div>
+<br/>
+<div class="div2"></div>
+
+<script src="js/jquery-1.12.3.min.js"></script>
+<!--<script src="js/jquery.color.js"></script>-->
+<script>
+    var $div1 = $('.div1');
+    var $div2 = $('.div2');
+
+    $div1.animate({'left':'500px'},5000,function(){
+        $(this).css('background-color','red');
+    });
+    $div2.animate({'left':'500px'},5000,'linear',function(){
+        $(this).css('background-color','red');
+    });
+
+    /*
+        1.animate()方法
+        描述：jq提供的一个用来自定义动画的方法。
+        语法：jq.animate(动画结束状态JSON,动画时间ms,动画线性运动,回调函数function);
+        说明：
+            (1)前两个参数为必要参数，后两个参数为可选参数
+            (2)第一个参数是json格式，哪怕只有一个属性发生变化也要写成json格式
+            (3)第三个参数如果写出'linear'，则表示线性运动，否则为逐渐加快然后减慢的动画
+        例子：
+             $div1.click(function () {
+                $(this).animate({'width':'500px'},1500);
+             });
+             $div2.click(function () {
+                 $(this).animate({'width':'500px','height':'200px'},1500);
+             });
+
+        2.animate()方法的局限
+            描述：
+                jquery框架中提供的animate()方法只能够修改可以量化的属性，
+                对于颜色&display等无法量化的属性则不能够生效.
+                【如果想要颜色的改变，则需要通过引入jquery.color.js插件】
+
+        3.animate()动画顺序
+        原则：
+             同步原则：同一个元素如果存在多个animate命令，则按照添加顺序执行。
+             异步原则：不同元素如果存在多个animate命令，则他们同时执行。
+        例子：
+             $div1.animate({'width':'500px'},1500)
+             .animate({'height':300},1500);
+
+             $div2.animate({'width':'300px'},3000);
+
+        4.animate()回调函数
+        描述：回调函数表示动画执行完毕后，要做的事情。
+        说明：
+            (1)回调函数不需要主动调用，会在动画执行完毕后自动调用
+            (2)在animate()方法中，回调函数如果写出，必须放在最后一个参数。
+        例子：
+             $div1.animate({'width':'500px'},3000, function () {
+                $(this).css('background-color','red');
+             });
+
+             $div2.animate({'width':'300px'},3000, function () {
+                $(this).css('background-color','red');
+             });
+
+     */
+</script>
+</body>
+</html>

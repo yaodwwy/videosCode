@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: bisque;
+        }
+        .container{
+            width: 1000px;
+            margin: 0 auto;
+        }
+        .login{
+            text-align: center;
+            margin:  100px auto 0;
+            width: 240px;
+            height: 20px;
+        }
+        .login label{
+            display: block;
+            background-color: cadetblue;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 10px 10px 0px 0px ;
+        }
+        .login form{
+            background-color: burlywood;
+        }
+        .login input{
+            margin-left: 10px;
+            line-height: 20px;
+            margin-bottom: 5px;
+        }
+        .login input:first-child{
+            margin-top: 5px;
+        }
+        .login input:last-child{
+            width: 170px;
+            height: 30px;
+            cursor: pointer;
+            background-color: aquamarine;
+            color: #4898A0;
+            border: 0px;
+            margin-top: 5px;
+            border-radius: 10px;
+        }
+        .login input:last-child:hover{
+            background-color: cadetblue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="login">
+    <label>用户登录</label>
+    <form method="post" action="/form/">
+        {% csrf_token %}
+        账号:<input type="text" maxlength="20" name="username"><br>
+        <span style="color: crimson">{{ userfrom.errors.username.0 }}</span><br>
+        密码:<input type="password" maxlength="20" name="password"><br>
+        <span style="color: crimson">{{  userfrom.errors.password.0}}</span><br>
+        重复:<input type="password" maxlength="20" name="password_2"><br>
+        <span style="color: crimson">{{  userfrom.errors.password_2.0}}</span><br>
+       日期:<input type="text" maxlength="20" name="birthday"><br>
+        <span style="color: crimson">{{  userfrom.errors.birthday.0}}</span><br>
+        <input type="submit" value="登录">
+    </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>lesson3</title>
+    <style>
+        div{
+            width: 800px;
+            height: 300px;
+            background: skyblue;
+        }
+    </style>
+</head>
+<body>
+
+<div></div>
+
+<script>
+
+    var div = document.querySelector('div');
+    div.addEventListener('touchstart', function () {
+        console.log('开始触摸');
+        console.log('x:'+event.touches[0].pageX);
+        console.log('Y:'+event.touches[0].pageY);
+
+        console.log(event.clientX);
+        console.log(event.clientY);
+    });
+    /*div.addEventListener('touchmove', function () {console.log('正在触摸');});
+    div.addEventListener('touchend', function () {console.log('触摸结束');});
+    div.addEventListener('touchcancel', function () {console.log('触摸中断');});*/
+
+    /*
+        1.触摸事件
+        类型：
+             (1)touchstart:当手指触摸屏幕时触发；即使已经有一个手指放在了屏幕上也会触发。
+             (2)touchmove:当手指在屏幕上滑动时连续的触发。
+             (3)touchend:当手指从屏幕上移开时触发。
+             (4)*touchcancel:当系统停止跟踪触摸时触发。
+             (如电话接入或者弹出信息,一般在这个操作中来做一些暂停游戏类的操作)
+        说明：
+             (1)如非特殊说明，事件均为冒泡事件
+             (2)手机触摸事件必须使用dom2来进行绑定
+             (3)可以给一个元素添加多个触摸事件
+
+
+        2.触摸事件中获取手指坐标
+        说明：
+            event.touches[第几根手指].pageX
+            event.touches[第几根手指].pageY
+        例子：
+             console.log('开始触摸');
+             console.log('x:'+event.touches[0].pageX);
+             console.log('Y:'+event.touches[0].pageY);
+
+             console.log(event.clientX);
+             console.log(event.clientY);
+     */
+
+    div.onclick = function () {console.log('12345789');};
+
+</script>
+</body>
+</html>

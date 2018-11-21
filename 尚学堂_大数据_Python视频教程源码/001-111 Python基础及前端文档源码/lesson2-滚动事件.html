@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>lesson2</title>
+    <script>
+        /*
+            1.滚动事件scroll
+            描述：滚动事件指的是当【文档】或者【元素】发生滚动时，自动调用的事件。
+
+            (1)文档滚动事件
+            语法：document.body.onscroll = function (){};
+            说明：
+                a.在文档发生滚动的时候，可以通过srollTop和scrollLeft属性来获得文档的滚动距离
+                    document.body.scrollTop/scrollLeft
+                    document.documentElement.scrollTop/scrollLeft
+                b.获得的滚动距离是不存在单位的（不是像素，不是百分比，而是没有单位）
+                c.这两个属性不仅能够访问，还能够被赋值，赋值代表让页面滚动到指定位置。
+            例子：
+                 document.body.onscroll = function () {
+                 var scrolltop = document.body.scrollTop||document.documentElement.scrollTop;
+                 var scrollleft = document.body.scrollLeft||document.documentElement.scrollLeft;
+
+                 console.log('top:'+scrolltop);
+                 console.log('left:'+scrollleft);
+                 console.log('-----------------');
+                 };
+
+            (2)元素滚动事件
+            描述：
+            注意：
+                a.元素滚动的前提是具有overflow属性，并设置为可以滚动。
+            例子：
+                 var div = document.querySelector('div');
+                 div.onscroll = function () {
+                     var scrolltop = div.scrollTop;
+                     var scrollleft = div.scrollLeft;
+
+                     console.log('top:'+scrolltop);
+                     console.log('left:'+scrollleft);
+                     console.log('-----------------');
+                 };
+         */
+    </script>
+    <style>
+        body{
+            width: 3000px;
+            height: 3000px;
+            background: radial-gradient(skyblue,pink,orange);
+        }
+        button{
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+        }
+        /*元素滚动事件*/
+        /*div{
+            width: 300px;
+            height: 150px;
+            border: 1px solid black;
+            overflow-y: scroll;
+        }*/
+    </style>
+</head>
+<body>
+<button>回到顶部</button>
+
+<!--<div>
+    <p>这是一个p标签</p>
+    <p>这是一个p标签</p>
+    <p>这是一个p标签</p>
+    <p>这是一个p标签</p>
+    <p>这是一个p标签</p>
+    <p>这是一个p标签</p>
+    <p>这是一个p标签</p>
+    <p>这是一个p标签</p>
+    <p>这是一个p标签</p>
+    <p>这是一个p标签</p>
+    <p>这是一个p标签</p>
+    <p>这是一个p标签</p>
+    <p>这是一个p标签</p>
+    <p>这是一个p标签</p>
+</div>-->
+<script>
+    var timer = null;//创建定时器
+    document.querySelector('button').onclick = function () {
+        /*文档滚动事件*/
+        var timer = setInterval(function () {
+            /*先获取页面滚动距离*/
+            var top = document.body.scrollTop || document.documentElement.scrollTop;
+            /*减少固定值*/
+            top = top*0.8;
+            /*赋值回去，以达到页面滚动的效果*/
+            document.body.scrollTop = top;
+            document.documentElement.scrollTop = top;
+            /*滚动到顶部后，定时器取消*/
+            if(top <= 0){
+                clearInterval(timer);
+            }
+        },100);
+
+        /*元素滚动事件*/
+        /*div.scrollTop = 0;*/
+    };
+    document.body.onscroll = function () {
+        var scrolltop = document.body.scrollTop||document.documentElement.scrollTop;
+        console.log('top:'+scrolltop);
+        console.log('-----------------');
+    };
+
+
+</script>
+</body>
+</html>

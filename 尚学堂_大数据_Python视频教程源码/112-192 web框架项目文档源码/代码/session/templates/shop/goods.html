@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        body{
+        background-color: blanchedalmond;
+        }
+        .container{
+            width: 1000px;
+            margin: 0 auto;
+        }
+        .goods{
+            width: 100%;
+        }
+        .good{
+            width: 230px;
+            padding: 10px;
+            height: 310px;
+        }
+        .good img{
+            width: 230px;
+            height: 270px;
+            display: block;
+        }
+        .good .goodname{
+            font-size: 20px;
+            font-weight: bold;
+            display: block;
+            text-align: center;
+            color: crimson;
+        }
+        .fl{
+            float: left;
+        }
+        .fr{
+            float: right;
+        }
+        .addcart{
+            display: block;
+            width: 100px;
+            height: 25px;
+            background-color: crimson;
+            padding-left: 5px;
+            padding-right: 5px;
+            border-radius: 2px;
+            cursor: pointer;
+            color: white;
+            text-align: center;
+            line-height: 25px;
+            text-decoration: none;
+
+        }
+        .addcart:hover{
+            background-color: #DC0D21;
+        }
+        .price{
+            color: red;
+            display: block;
+            line-height: 25px;
+            padding-left: 10px;
+        }
+        .good:hover{
+            border: 1px solid crimson;
+            margin: -1px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="goods">
+        <ul>
+            {% for good in goods %}
+            <li class="good fl">
+               <img style="background: url('{{ good.img }}') no-repeat center">
+                <span class="goodname">{{ good.name }}</span>
+                <span class="fl price">${{ good.price }}</span><span class="fr "><a href="/shop/addcart/?name={{ good.name }}" class="addcart" target="_blank">加入购物车</a></span>
+            </li>
+            {% endfor %}
+
+        </ul>
+    </div>
+</div>
+</body>
+</html>

@@ -1,7 +1,0 @@
-from  django.conf.urls import url
-from User import views
-urlpatterns=[
-    url(r'^register/$',views.RegisterView.as_view()),
-    url(r'^registercontrol/$',views.RegisterControlView.as_view()),
-    url(r'^usercenter/$',views.usercenter)
-]

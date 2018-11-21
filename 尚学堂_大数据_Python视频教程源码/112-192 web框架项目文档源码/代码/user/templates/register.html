@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        form{
+            text-align: center;
+        }
+        img{
+            width: 100px;
+            height: 40px;
+            display: block;
+            margin: 0 auto;
+            margin-top: 150px;
+        }
+    </style>
+</head>
+<body>
+<img src="{{static_url('a.jpg')}}">
+<form action="/register" method="post">
+    <label>账号:<input type="text" name="account"><br></label>
+    <label>密码:<input type="text" name="password"><br></label>
+    <input type="submit" value="注册">
+</form>
+</body>
+</html>

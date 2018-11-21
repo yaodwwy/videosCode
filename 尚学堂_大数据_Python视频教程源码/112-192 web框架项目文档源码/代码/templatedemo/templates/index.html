@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{{content[:20]}}
+<font color="red">hello {{name}}</font><br>
+{{items[0]}}<br>
+{{user['name']}}<br>
+{{date.year}}-{{date.month}}-{{date.day}}<br>
+{{s.name}}<br>
+{{s.show()}}<br>
+{{s.show}}<br>
+{{add(1,2)}}<br>
+{{abc()}}<br>
+<hr>
+{%for item in items%}
+{{item}}<br>
+{%end%}
+<hr>
+{%for k,v in user.items()%}
+{{k}}:{{v}}<br>
+{%end%}
+<img src="{{static_url('a.jpg')}}" height="300px" width="300px">
+<hr>
+{%for i in [j for j in range(10) if j%2==0]%}
+{{i}}
+{%end%}
+<hr>
+{%if name!=None %}
+    欢迎：{{name}}
+  {%else%}
+    请登录
+{%end%}
+<hr>
+{%raw items[0]%}
+<br>
+<a href="{{reverse_url('myabc')}}">点解</a><br>
+{{handler}}<br>
+{%for k,v in request.headers.items()%}
+{{k}}:{{v}}<br>
+{%end%}
+<hr>
+{%try%}
+{{1/0}}
+{%except%}
+出错了
+{%end%}
+
+
+</body>
+</html>

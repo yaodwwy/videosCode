@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>lesson1</title>
+</head>
+<body>
+<script>
+
+    /*“人类”构造函数创建完毕*/
+    function Person(tempName,tempTall,tempWeight,tempAbility){
+        this.peoName = tempName;
+        this.peoTall = tempTall;
+        this.peoWeight = tempWeight;
+        this.peoAbility = tempAbility;
+    }
+    /*通过构造函数，创建“人类”中的对象个体*/
+    var me = new Person('张先森',183,75, function(){console.log('张先森的能力');});
+    var shishi = new Person('刘诗诗',160,46, function () {console.log('会卖萌');});
+
+
+    /*
+        1.js中类和对象
+        描述：js本身是一个面向过程思想的语言，因此并不实际存在类和对象的概念。
+             但为了解决面向对象的问题，js使用某种手段来模拟类和对象的结构。
+
+             类：构造函数来模拟实现
+             对象：通过new来调用构造函数，生成的结构称为类的对象
+        语法：
+             function 构造函数类名(参数1,参数2,...){
+                 this.属性1 = 参数1;
+                 this.属性2 = 参数2;
+                 ...
+             }
+             var 对象名 = new 构造函数类名(实际参数1，实际参数2，...);
+        补充：
+            构造函数的名称首字母必须大写。
+        强调：
+            js中不存在类和对象，只是通过构造函数的方式模拟的类的结构。
+     */
+
+
+</script>
+</body>
+</html>

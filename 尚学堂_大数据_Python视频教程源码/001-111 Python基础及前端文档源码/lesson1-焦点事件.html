@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>lesson1</title>
+    <style>
+        .colorRed{  color:red;  }
+        .colorGreen{  color:green;  }
+        .borderRed{  border:2px solid red;  }
+        .borderGreen{  border:2px solid green;  }
+    </style>
+</head>
+<body>
+
+<span>用户名：</span>
+<input type="text" class="userName"/>
+<span class="userNameSpan"></span>
+<br/>
+<button>获得焦点</button>
+
+<script>
+    var userNameInput = document.querySelector('.userName');
+    var userNameSpan = document.querySelector('.userNameSpan');
+    var btn = document.querySelector('button');
+
+    btn.onclick = function () {
+        userNameInput.focus();//当按钮点击的时候，主动让input获得焦点。
+        userNameInput.blur();
+        userNameInput.focus();
+    };
+
+    userNameInput.onblur = function () {
+        if(userNameInput.value.length == 11){
+            userNameSpan.innerHTML = '正确';
+            /*只要是系统提供的属性，大多在js中可以直接访问*/
+            userNameInput.className = 'borderGreen';
+            userNameSpan.className = 'colorGreen';
+        }else{
+            userNameSpan.innerHTML = '请输入11位正确手机号';
+            userNameInput.className = 'borderRed';
+            userNameSpan.className = 'colorRed';
+        }
+    };
+
+    /*
+        1.焦点事件
+        描述：事件中焦点指的是【domTree中正在和用户发生交互的节点】。
+        类型：获得焦点事件focus、失去焦点事件blur
+        语法：两种事件的添加监听方式可以使用dom0或dom2
+        注意：焦点事件默认不支持冒泡，如果需要事件传递则必须通过dom2来添加捕获事件实现。
+        补充：
+            主动获得焦点事件：元素节点.focus();
+            主动失去焦点事件：元素节点.blur();
+        例子：
+             userNameInput.onfocus = function () {
+                console.log('此时获得焦点');
+             };
+             userNameInput.onblur = function () {
+                console.log('此时失去焦点');
+             };
+
+     */
+
+</script>
+</body>
+</html>

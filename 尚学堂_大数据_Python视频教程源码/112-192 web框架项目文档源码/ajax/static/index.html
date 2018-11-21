@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+<button onclick="get()" >点击get</button>
+<button onclick="post()" >点击post</button>
+<button onclick="postjson()" >点击postjson</button>
+<button onclick="redict()" >重定向</button>
+<button onclick="comget()" >comget</button>
+<button onclick="compost()" >compost</button>
+<ul id="dongati"></ul>
+<form action="/post/" method="post">
+    {% csrf_token %}
+    <input type="text" name="asd">
+    <input type="submit">
+</form>
+<script>
+    function get() {
+       $.get('/get?name=zhangsan',function (data) {
+           console.log(data)
+       })
+    }
+    function post() {
+         $.post('/post/','name=asdsadsadsa&age=10',function (data) {
+            console.log(data)
+        })
+    }
+    function postjson() {
+          $.post('/postjson/','name=asdsadsadsa&age=10',function (data) {
+            arr = eval(data) <!--将字符串转成json-->
+            for (i=0;i<arr.length;i++){
+                node = arr[i]
+                li =document.createElement('li')
+                li.innerHTML=node.name+":"+node.phone
+              $('#dongati').append(li)
+            }
+        })
+    }
+    function redict() {
+        $.get('/redirect/',function (data) {
+           window.location=data
+        })
+    }
+    function comget() {
+        $.ajax({
+            type:'GET',
+            url:'/get',
+            data:'name=张三&age=10',
+            success:function (data) {
+                console.log(data)
+            },
+            error:function () {
+                console.log('失败了')
+            },
+            complete:function (data) {
+                console.log('wancheng ')
+            }
+
+        })
+
+    }   
+    function compost() {
+        $.ajax({
+            type:'post',
+            url:'/post/',
+            data:'name=李四&age=1000',
+            headers:{
+                anc:'helolpython'
+            },
+            success:function (data) {
+                console.log(data)
+            },
+            complete:function (data) {
+                console.log(data)
+            }
+        })
+    }
+
+</script>
+</body>
+</html>

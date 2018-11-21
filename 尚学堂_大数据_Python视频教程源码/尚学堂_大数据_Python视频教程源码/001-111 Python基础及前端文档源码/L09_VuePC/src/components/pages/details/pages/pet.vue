@@ -1,0 +1,258 @@
+<template>
+	<div class="sales-board">
+		<div class="sales-board-intro">
+			<h2>蛋糕美食</h2>
+                <p>蛋糕花样丰富多彩，造型百变，味道也总是给我们带来惊喜，不过世界上最著名的10大蛋糕，你知道多有哪些吗？下面就让我们大开眼界吧。</p>
+		</div>
+
+		<div class="sales-board-form">
+			    <div class="sales-board-line">
+    			    <div class="sales-board-line-left"> 购买数量：</div>
+            	<div class="sales-board-line-right">
+                <Counter :max="counterData.max" :min="counterData.min" @getInfo="getInfos('counter',$event)"/> 
+              </div>
+      		</div>
+
+      		<div class="sales-board-line">
+      			<div class="sales-board-line-left">产品类型：</div>
+            <div class="sales-board-line-right">
+              <Typer :typers="typers" @getInfo="getInfos('typer',$event)"/>
+            </div>
+      		</div>
+
+      		<div class="sales-board-line">
+      			<div class="sales-board-line-left">有效时间：</div>
+            <div class="sales-board-line-right">
+              <Timer :timers="timers" @getInfo="getInfos('timer',$event)"/>
+            </div>
+      		</div>
+
+      		<div class="sales-board-line">
+      			<div class="sales-board-line-left"> 总价：</div>
+            <div class="sales-board-line-right">
+              {{ getTotalPrice }}元
+            </div>
+          </div>
+
+          <div class="sales-board-line">
+            <div class="sales-board-line-left"></div>
+            <div class="sales-board-line-right">
+              <a href="javascript:;" class='button' @click="submitData">立即购买</a>
+            </div>
+          </div>
+		</div>
+
+		<div class="sales-board-des">
+        <h3>黑森林蛋糕</h3>
+        <p>黑森林蛋糕，德国最出名的蛋糕。它融合了樱桃的酸、奶油的甜、樱桃酒的醇香。完美的黑森林蛋糕经得起各种口味的挑剔。黑森林蛋糕被称作黑森林的特产之一，德文原意为“黑森林樱桃奶油蛋糕”。正宗的黑森林蛋糕，巧克力相对比较少，更为突出的是樱桃酒和奶油的味道。</p>
+        <h3>长崎蜂蜜蛋糕</h3>
+        <p>
+        蜂蜜蛋糕，用砂糖、鸡蛋和面粉做成，是日本非常著名的西点。不过，它最早起源于荷兰古国，当时的贵族在招待使节时都会用它来向宾客表达主人最隆重的敬意。
+        </p>
+        <h3>乳酪蛋糕</h3>
+        <p>
+        乳酪蛋糕 ，又称奶酪蛋糕。以海绵蛋糕、派皮等为底坯，将加工后的乳酪混合物倒入上面，经过烘烤、装饰而成。包括美式乳酪蛋糕、酸奶乳酪蛋糕等。乳酪类蛋糕单从材料、制作工艺以及口感与其他几种蛋糕相比稍有不同，这类蛋糕介于蛋糕和甜点之间，所以越来越受人关注。
+        </p>
+    </div>
+
+	</div>
+</template>
+<script>
+
+import Counter from "./components/counter"
+import Typer from "./components/typer"
+import Timer from "./components/timer"
+	
+export default{
+	name:"pet",
+	data(){
+		return{
+      // Counter的数据
+      counterData:{
+        max:10,
+        min:1
+      },
+      typers:[
+          {
+            title:"初级版",
+            value:1
+          },
+          {
+            title:"中级版",
+            value:2
+          },
+          {
+            title:"高级版",
+            value:3
+          },
+          {
+            title:"专家版",
+            value:4
+          }
+        ],
+        timers: [
+          {
+            title:"1个月",
+            value:1
+          },
+          {
+            title:"3个月",
+            value:3
+          },
+          {
+            title:"6个月",
+            value:6
+          }
+        ],
+        counter:1,
+        timer:1,
+        typer:1,
+        totalPrice:0
+		}
+	},
+  components:{
+    Counter,
+    Typer,
+    Timer
+  },
+  methods:{
+    // getCounterNum(data){
+    //   console.log(data);  // 100
+    // },
+    // getTimerValues(data){
+    //   console.log(data); // 5
+    // },
+    // getTyperValues(data){
+    //   console.log(data); // 80
+    // }
+    getInfos(key,value){
+      // console.log(key,value);
+      // console.log(this); // this关键字指向当前组件本身
+      this[key] = value; // 
+      var order = {
+        "order_counter":this.counter,
+        "order_timer":this.timer,
+        "order_typer":this.typer
+      }
+      // counter:100   timer:5  type:10
+      this.totalPrice = order.order_counter * 100 + order.order_timer * 5 + order.order_typer * 10;
+      return order;
+    },
+    submitData(){
+      console.log(this.getInfos());
+      alert("订单提交成功")
+    }
+  },
+  computed:{
+    getTotalPrice(){
+      if(this.totalPrice){
+         return this.totalPrice;
+      }
+      return this.counter * 100 + this.typer * 10 + this.timer * 5;
+    }
+  }
+}	
+
+</script>
+
+<style scoped>
+
+.sales-board {
+  background: #fff;
+}
+.sales-board-form {
+
+}
+.sales-board-intro h2 {font-size: 20px;
+  padding: 20px;
+}
+.sales-board-intro p {
+  background: #f7fcff;
+  padding: 10px 20px;
+  color: #999;
+  line-height: 1.8;
+}
+.sales-board-form {
+  padding: 30px 20px;
+  font-size: 14px;
+}
+.sales-board-line {
+  clear: both;
+  padding-bottom: 20px;
+}
+.sales-board-line-left {
+    display: inline-block;
+    width: 100px;
+}
+.sales-board-line-right {
+    display: inline-block;
+    width: 75%;
+}
+.sales-board-des {
+  border-top: 20px solid #f0f2f5;
+  padding: 15px 20px;
+}
+.sales-board-des p {
+  line-height: 1.6;
+}
+.sales-board-des h2 {
+  font-size: 20px;
+  padding-bottom: 15px;
+}
+.sales-board-des h3 {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 20px 0 10px 0;
+}
+.sales-board-des li {
+  padding: 5px 0;
+}
+.sales-board-table {
+  width: 100%;
+  margin-top: 20px;
+}
+.sales-board-table th {
+  background: #4fc08d;
+  color: #fff;
+}
+.sales-board-table td {
+    border: 1px solid #f0f2f5;
+    padding: 15px;
+}
+h3{
+  margin-top: 30px;
+}
+.buy-dialog-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+.buy-dialog-btn {
+  margin-top: 20px;
+}
+.buy-dialog-table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.buy-dialog-table td,
+.buy-dialog-table th{
+  border: 1px solid #e3e3e3;
+  text-align: center;
+  padding: 5px 0;
+}
+.buy-dialog-table th {
+  background: #4fc08d;
+  color: #fff;
+  border: 1px solid #4fc08d;
+}
+.button {
+  background: #4fc08d;
+  color: #fff;
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.button:hover {
+  background: #4fc08d;
+}
+	
+</style>

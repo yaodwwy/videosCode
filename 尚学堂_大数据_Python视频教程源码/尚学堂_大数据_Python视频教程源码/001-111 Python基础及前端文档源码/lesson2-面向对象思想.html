@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>lesson2</title>
+</head>
+<body>
+<script>
+    /*
+        1.面向过程和面向对象
+        描述：
+            (1)面向过程思想：罗列出解决问题的步骤，然后按照一定顺序逐一完成。
+            (2)面向对象思想：找到能够解决问题的对象，然后让对象解决问题。
+        特征：
+            (1)面向过程(事必躬亲)：顺序、选择、循环
+            (2)面向对象(指点江山)：封装（构建类）、继承、多态（js中不存在多态）
+        扩展：
+            公有：对象的属性和方法，在对象外部可以直接访问。
+            私有：对象的属性和方法，仅能够在对象内部访问，在外部没有办法直接访问。
+        例子：
+             var frank = new Person('frank',18);//(new一个对象)实例化一个类的对象
+             console.log(frank);
+
+             frank.setDream('有很多钱，有很多老婆');
+             console.log(frank.getDream());
+
+        2.原型prototype
+        描述：原型是js为函数提供的一个自带的object类型属性，
+              【添加给原型的属性和方法】会自动的为【每一个由类创建的对象】所共同拥有。
+        作用：能够给由类创建的对象添加“公共的”公有属性，并且不会占有对象自己的内存。
+     */
+    function Person(tempName,tempAge){
+        /*this.属性 来添加公有属性（模拟）*/
+        this.peoName = tempName;
+        this.peoAge = tempAge;
+
+        /*js通过局部变量 来添加私有属性（模拟）*/
+        var peoDream = '';
+        /*设置getter和setter方法，来为私有属性服务*/
+        this.setDream = function (tempDream) {peoDream = tempDream;};
+        this.getDream = function () {  return peoDream;  };
+    }
+    /*给Person类原型中添加两个“公共的”公有属性*/
+    Person.prototype.eyesNum = 2;
+    Person.prototype.earsNum = 2;
+    
+    var frank = new Person('frank',18);//(new一个对象)实例化一个类的对象
+    console.log(frank.eyesNum);
+    console.log(frank.earsNum);
+    var shishi = new Person('刘诗诗',17);
+    console.log(shishi);
+
+
+</script>
+</body>
+</html>

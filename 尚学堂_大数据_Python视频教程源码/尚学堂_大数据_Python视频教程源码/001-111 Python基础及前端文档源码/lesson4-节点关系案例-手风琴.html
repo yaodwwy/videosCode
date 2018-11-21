@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>lesson4</title>
+    <style>
+        *{  margin: 0; padding: 0;  }
+        .sfq{
+            width: 500px; border: 1px solid black;
+            margin: 80px auto;
+        }
+        .sfq ul{
+            list-style: none;
+        }
+        .sfq ul li{
+            border-bottom: 1px dotted #333;
+        }
+        .sfq ul li div{
+            display: none;
+            border: 1px dotted lightgray;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sfq">
+    <ul>
+        <li>
+            <h2>这是标题</h2>
+            <div class="info">
+                这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+            </div>
+        </li>
+        <li>
+            <h2>这是标题</h2>
+            <div class="info">
+                这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+            </div>
+        </li>
+        <li>
+            <h2>这是标题</h2>
+            <div class="info">
+                这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+            </div>
+        </li>
+    </ul>
+</div>
+
+<script src="js/jquery-1.12.3.min.js"></script>
+<script>
+
+    $('h2').click(function () {
+        if($(this).siblings().is(':visible')){
+            $(this).siblings().slideUp();
+        }else{
+            /*在当前这个点击的h2的兄弟展开之前，先将所有的收起*/
+            $('.info').slideUp();
+            $(this).siblings().slideDown();
+        }
+    });
+
+</script>
+</body>
+</html>

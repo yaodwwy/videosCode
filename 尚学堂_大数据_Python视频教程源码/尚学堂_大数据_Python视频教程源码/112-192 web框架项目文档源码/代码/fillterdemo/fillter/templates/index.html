@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block head %}
+    <link href="{%static 'css/index.css'%}" rel="stylesheet" >
+{% endblock head %}
+{% block left %}
+    <ul class="leftMenu" id="menu">
+    <li img = '{% static 'a.jpg' %}'>Java开发</li>
+    <li img = '{% static 'b.jpg' %}'>Android开发</li>
+    <li img = '{% static 'c.jpg' %}'>大数据开发</li>
+    <li img = '{% static 'd.jpg' %}'>IOS开发</li>
+    </ul>
+    <div class="submenu">
+    <img src="{% static 'a.jpg' %}">
+    </div>
+{% endblock left %}
+{% block mid %}
+    我是中间的
+{% endblock mid %}
+{% block right %}
+    <a href="/filter/show">qu </a>
+{% endblock right %}
+{% block footerjs %}
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+    $('#menu').children().mouseenter(function () {
+        $('.submenu img').attr('src',$(this).attr('img'))
+        $('.submenu').css('display','block')
+    })
+    $('#menu').children().mouseout(function () {
+        $('.submenu').css('display','none')
+    })
+
+    </script>
+{% endblock footerjs %}

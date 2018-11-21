@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ul,ol,dl{
+    list-style: none;
+}
+/*定义的是中间的*/
+.container{
+    width: 1000px;
+    margin: 0 auto;
+}
+.header{
+    height: 56px;
+    background-color: rgba(0, 0, 0, 0.58);
+    margin-bottom: 5px;
+}
+.nav{
+    position: relative;
+    width: 1000px;
+    margin: 0 auto;
+}
+.nav ul li{
+    float: left;
+    color: white;
+    line-height: 56px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.nav ul li:hover{
+    color: bisque;
+}
+.nav ul li.active{
+    color: bisque;
+}
+ .nav .search{
+    position: absolute;
+     right: 0px;
+     line-height: 56px;
+}
+ .nav .search input{
+     height: 30px;
+ }
+ .footer{
+     height: 70px;
+     color: white;
+     line-height: 70px;
+     background-color: rgba(0, 0, 0, 0.58);
+ }
+ .left{
+
+     float: left;
+     width: 100px;
+      position: relative;
+ }
+ .mid{
+     float: left;
+     width: 800px;
+     background-color: bisque;
+ }
+ .right{
+     float: left;
+     width: 100px;
+     background-color:rosybrown;
+ }
